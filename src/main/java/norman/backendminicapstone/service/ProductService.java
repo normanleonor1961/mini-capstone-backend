@@ -40,6 +40,15 @@ public class ProductService {
         return allProductsDTO;
     }
 
+    public ProductDTO getProduct(UUID productId) {
+
+        // Get product from database
+        ProductEntity product = productRepository.findByProductId(productId);
+
+        if (product == null) throw new UserAlreadyExist("Product doesn't exist");
+
+        return modelMapper.map(product, ProductDTO.class);
+    }
     public List<ProductDTO> addProduct(ProductRequest newProduct) {
 
         // Save new product to database

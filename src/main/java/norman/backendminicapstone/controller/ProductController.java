@@ -21,6 +21,10 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/getById/{productId}")
+    public ProductDTO getProduct(@PathVariable UUID productId) {
+        return productService.getProduct(productId);
+    }
     @PutMapping("/add")
     public List<ProductDTO> addProduct(@RequestBody ProductRequest productRequest) {
         return productService.addProduct(productRequest);
